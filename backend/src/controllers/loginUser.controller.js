@@ -1,10 +1,11 @@
-import { User } from "../models/user.model";
-import { ApiError } from "../utils/ApiError";
-import { asyncHandler } from "../utils/asyncHandler";
+import { User } from "../models/user.model.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 const loginUser = asyncHandler(async(req, res) => {
     const {userName, email, password} = req.body
-    if(!userName || !email){
+    if(!userName && !email){
         throw new ApiError(400, "Username/email is must")
     }
     const user = await User.findOne({
@@ -13,7 +14,8 @@ const loginUser = asyncHandler(async(req, res) => {
     if(!user){
         throw new ApiError(404, "Username/email does not exist!!!")
     }
-    const isPasswordValid = await User.isPasswordCorrect(password)
+    const isPasswordValid = await user.isPasswordCorrect(password)
+
     if(!isPasswordValid){
         throw new ApiError(401, "Invalid Passowrd!!!")
     }
