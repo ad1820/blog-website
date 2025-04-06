@@ -1,0 +1,29 @@
+import { User } from "../models/user.model";
+import { ApiError } from "../utils/ApiError";
+import { asyncHandler } from "../utils/asyncHandler";
+
+const loginUser = asyncHandler(async(req, res) => {
+    const {userName, email, password} = req.body
+    if(!userName || !email){
+        throw new ApiError(400, "Username/email is must")
+    }
+    const user = await User.findOne({
+        $or: [{userName}, {email}]
+    })
+    if(!user){
+        throw new ApiError(404, "Username/email does not exist!!!")
+    }
+    const isPasswordValid = await User.isPasswordCorrect(password)
+    if(!isPasswordValid){
+        throw new ApiError(401, "Invalid Passowrd!!!")
+    }
+    const token = user.generateJWT()
+    res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+
+    res.status(200).json(new ApiResponse(200, user, "Login successful"));
+})
+
+export {loginUser}
