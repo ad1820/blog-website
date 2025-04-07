@@ -12,4 +12,5 @@ router.route("/logOut").post(isAuthenticated, logoutUser)
 
 
 
+
 export default router

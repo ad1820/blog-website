@@ -11,4 +11,9 @@ app.use(cookieParser())
 import userRouter from "./routes/user.routes.js"
 //routes decleration
 app.use("/api/users", userRouter)
+
+import blogRouter from "./routes/blog.routes.js"
+// new blog route
+app.use("/api/blogs", blogRouter)
+
 export {app}
