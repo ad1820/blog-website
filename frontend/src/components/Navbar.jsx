@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  
 
   const handleLogout = async () => {
     try {
@@ -13,8 +14,8 @@ const Navbar = () => {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Logout failed");
-      
-      navigate("/"); // redirect to login
+
+      navigate("/");
     } catch (err) {
       alert(err.message);
     }

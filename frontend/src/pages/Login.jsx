@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
       const data = await res.json();
       if(!res.ok) throw new Error(data.message || "Login failed")
 
-      navigate("/"); // or wherever you want to redirect
+      navigate("/")
     } catch (err){
       alert(err.message)
     }
