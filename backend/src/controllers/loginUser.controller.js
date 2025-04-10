@@ -1,7 +1,7 @@
-import { User } from "../models/user.model.js";
-import { ApiError } from "../utils/ApiError.js";
-import { ApiResponse } from "../utils/ApiResponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { User } from "../models/user.model.js"
+import { ApiError } from "../utils/ApiError.js"
+import { ApiResponse } from "../utils/ApiResponse.js"
+import { asyncHandler } from "../utils/asyncHandler.js"
 
 const loginUser = asyncHandler(async(req, res) => {
     const {userName, email, password} = req.body
@@ -22,10 +22,14 @@ const loginUser = asyncHandler(async(req, res) => {
     const token = user.generateJWT()
     res.cookie("token", token, {
         httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === 'production'
+    })
+    const userWithoutPassword = user.toObject()
+    delete userWithoutPassword.password
 
-    res.status(200).json(new ApiResponse(200, user, "Login successful"));
+    res.status(200).json(new ApiResponse(200, userWithoutPassword, "Login successful"))
 })
 
 export {loginUser}

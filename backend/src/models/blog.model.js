@@ -25,6 +25,6 @@ const blogSchema = new Schema({
         ref: "User",
         required: true
     }
-}, { timestamps: true });
+}, { timestamps: true })
 
 export const Blog = mongoose.model("Blog", blogSchema)

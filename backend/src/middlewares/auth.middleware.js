@@ -4,18 +4,19 @@ import { ApiError } from "../utils/ApiError.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 
 const isAuthenticated = asyncHandler(async (req, res, next) => {
-    const token = req.cookies?.token;
+    const token = req.cookies?.token
     if(!token){
-        throw new ApiError(401, "Unauthorized: No token provided");
+        throw new ApiError(401, "Unauthorized: No token provided")
     }
 
     try {
+        console.log("Token from cookie:", token)
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await User.findById(decoded.id).select("-password");
-        next();
+        req.user = await User.findById(decoded.id).select("-password")
+        next()
     } catch (error) {
-        throw new ApiError(401, "Unauthorized: Invalid token");
+        throw new ApiError(401, "Unauthorized: Invalid token")
     }
-});
+})
 
-export { isAuthenticated };
+export { isAuthenticated }

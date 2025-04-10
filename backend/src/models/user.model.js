@@ -28,7 +28,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 6
     }
-}, { timestamps: true });
+}, { timestamps: true })
 
 //pre-save middleware
 userSchema.pre("save", async function(next) {
