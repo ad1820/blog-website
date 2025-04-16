@@ -19,7 +19,10 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <span className="navbar-welcome">Hi, {authData.userName}</span>
+            <Link to="/profile" className="navbar-welcome">
+              Hi, {authData.userName}
+            </Link>
+            <Link to="/create-blog" className="navbar-link navbar-btn">Create Blog</Link>
             <button className="navbar-link navbar-btn" onClick={logout}>Logout</button>
           </>
         )}

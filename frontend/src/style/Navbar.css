@@ -58,10 +58,25 @@
 }
 
 .navbar-welcome {
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 1px; /* Slight spacing for better readability */
+  text-transform: capitalize; /* Capitalize the first letter of each word */
+  background: linear-gradient(45deg, #3498db, #9b59b6); /* Gradient background for a vibrant look */
+  -webkit-background-clip: text; /* Clip the gradient to the text */
+  background-clip: text; /* Apply the gradient effect to the text itself */
+  padding: 5px 10px; /* Add a little padding around the text */
+  border-radius: 5px; /* Round the corners slightly */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add subtle shadow for a floating effect */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
+
+.navbar-welcome:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+  color: #fff; /* Ensures text color remains white even on hover */
+}
+
 
 @media (max-width: 768px) {
   .navbar {
