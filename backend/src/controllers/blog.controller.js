@@ -21,7 +21,7 @@ const getSingleBlog = asyncHandler(async (req, res) => {
         const blog = await Blog.findById(req.params.id)
             .populate("author", "userName");
 
-        if (!blog) throw new ApiError(404, "Blog not found");
+        if (!blog) throw new ApiError(404, "Blog not found")
 
         const responseData = {
             _id: blog._id,
@@ -34,10 +34,10 @@ const getSingleBlog = asyncHandler(async (req, res) => {
             dislikesCount: blog.dislikes.length,
         };
 
-        res.status(200).json(new ApiResponse(200, responseData, "Blog found successfully"));
+        res.status(200).json(new ApiResponse(200, responseData, "Blog found successfully"))
     } catch (error) {
         console.error(error.message);
-        throw new ApiError(500, "Error fetching blog");
+        throw new ApiError(500, "Error fetching blog")
     }
 });
 

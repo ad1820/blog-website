@@ -1,55 +1,51 @@
-// UserProfilePage.jsx
-
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../contexts/AuthContext'; // Import AuthContext
-import { useNavigate } from 'react-router-dom';
-import API from '../api/blog';  // Make sure you have the API setup for requests
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../contexts/AuthContext' 
+import { useNavigate } from 'react-router-dom'
+import API from '../api/blog'  
 
 const UserProfilePage = () => {
-  const { authData, loading } = useContext(AuthContext);
-  const [editing, setEditing] = useState(null); // For toggling edit mode
-  const [updatedBlog, setUpdatedBlog] = useState({ title: '', body: '' });
-  const navigate = useNavigate();
+  const { authData, loading } = useContext(AuthContext)
+  const [editing, setEditing] = useState(null)
+  const [updatedBlog, setUpdatedBlog] = useState({ title: '', body: '' })
+  const navigate = useNavigate()
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (!authData) {
-    return <div>You are not authenticated</div>;
+    return <div>You are not authenticated</div>
   }
 
   const handleEditClick = (blog) => {
     setEditing(blog._id);
-    setUpdatedBlog({ title: blog.title, body: blog.body });
-  };
+    setUpdatedBlog({ title: blog.title, body: blog.body })
+  }
 
   const handleSaveEdit = async () => {
     try {
-      await API.put(`/blogs/${editing}`, updatedBlog);
-      setEditing(null);
-      alert('Blog updated successfully');
-      // Optionally, you could refetch the blogs here
+      await API.put(`/blogs/${editing}`, updatedBlog)
+      setEditing(null)
+      alert('Blog updated successfully')
     } catch (error) {
-      console.error('Error updating blog:', error);
-      alert('Something went wrong, please try again later.');
+      console.error('Error updating blog:', error)
+      alert('Something went wrong, please try again later.')
     }
-  };
+  }
 
   const handleCancelEdit = () => {
-    setEditing(null);
-  };
+    setEditing(null)
+  }
 
   const handleDeleteBlog = async (blogId) => {
     try {
-      await API.delete(`/blogs/${blogId}`);
-      alert('Blog deleted successfully');
-      // Optionally, you could refetch the blogs here
+      await API.delete(`/blogs/${blogId}`)
+      alert('Blog deleted successfully')
     } catch (error) {
-      console.error('Error deleting blog:', error);
-      alert('Something went wrong, please try again later.');
+      console.error('Error deleting blog:', error)
+      alert('Something went wrong, please try again later.')
     }
-  };
+  }
 
   return (
     <div>
@@ -90,7 +86,7 @@ const UserProfilePage = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserProfilePage;
+export default UserProfilePage

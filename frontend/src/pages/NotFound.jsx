@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../style/NotFound.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import '../style/NotFound.css'
 
 const NotFound = () => {
   return (
@@ -9,7 +9,7 @@ const NotFound = () => {
       <p className="not-found-message">Page Not Found</p>
       <Link to="/" className="not-found-link">Go Back Home</Link>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

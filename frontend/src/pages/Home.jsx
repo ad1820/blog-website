@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import API from '../api/blog';
-import '../style/Home.css';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import API from '../api/blog'
+import '../style/Home.css'
 
 const Home = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        setLoading(true);
-        const response = await API.get('/blogs');
+        setLoading(true)
+        const response = await API.get('/blogs')
 
         if (response.data && response.data.data && Array.isArray(response.data.data)) {
-          setBlogs(response.data.data);
+          setBlogs(response.data.data)
         } else {
-          console.error('Unexpected API response format:', response.data);
-          setError('Unexpected data format from server');
-          setBlogs([]);
+          console.error('Unexpected API response format:', response.data)
+          setError('Unexpected data format from server')
+          setBlogs([])
         }
       } catch (error) {
-        console.error("Error fetching blogs", error);
-        setError('Failed to fetch blogs');
-        setBlogs([]);
+        console.error("Error fetching blogs", error)
+        setError('Failed to fetch blogs')
+        setBlogs([])
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchBlogs();
-  }, []);
+    fetchBlogs()
+  }, [])
 
   const renderAuthor = (author) => {
-    if (!author) return "Unknown";
-    if (typeof author === 'string') return author;
+    if (!author) return "Unknown"
+    if (typeof author === 'string') return author
     if (typeof author === 'object') {
-      return author.userName || author.name || author._id || "Anonymous";
+      return author.userName || author.name || author._id || "Anonymous"
     }
-    return String(author);
-  };
+    return String(author)
+  }
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner"></div></div>;
-  if (error) return <div className="error-message">Error: {error}</div>;
+  if (loading) return <div className="loading-container"><div className="loading-spinner"></div></div>
+  if (error) return <div className="error-message">Error: {error}</div>
 
   return (
     <div className="home-container">

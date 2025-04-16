@@ -10,7 +10,7 @@ const isAuthenticated = asyncHandler(async (req, res, next) => {
     }
 
     try {
-        console.log("Token from cookie:", token)
+        //console.log("Token from cookie:", token)
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id).select("-password")
         next()

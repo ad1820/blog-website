@@ -1,37 +1,37 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
-import API from '../api/blog';
-import '../style/CreateBlog.css';
+import React, { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../contexts/AuthContext'
+import API from '../api/blog'
+import '../style/CreateBlog.css'
 
 const CreateBlog = () => {
-  const { authData } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [error, setError] = useState('');
+  const { authData } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+  const [error, setError] = useState('')
 
   if (!authData) {
-    navigate('/login');
-    return null;
+    navigate('/login')
+    return null
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+    e.preventDefault()
+    setError('')
 
     if (!title.trim() || !body.trim()) {
-      setError('Title and Body are required.');
-      return;
+      setError('Title and Body are required.')
+      return
     }
 
     try {
-      await API.post('/blogs', { title, body });
-      navigate('/');
+      await API.post('/blogs', { title, body })
+      navigate('/')
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create blog.');
+      setError(err.response?.data?.message || 'Failed to create blog.')
     }
-  };
+  }
 
   return (
     <div className="create-blog-container">
@@ -56,7 +56,7 @@ const CreateBlog = () => {
         <button type="submit" className="submit-btn">Publish</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default CreateBlog;
+export default CreateBlog
