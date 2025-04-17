@@ -14,9 +14,10 @@ app.use(express.json({limit: "16kb"}))
 
 
 app.use(cors({
-    origin: "https://blog-website-frontend-adityas-projects-5eb185b6.vercel.app", // your frontend URL on Vercel
-    credentials: true // allow cookies (JWT tokens)
+    origin: "https://blog-website-frontend-blush.vercel.app",
+    credentials: true
 }));
+  
 
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(cookieParser())
