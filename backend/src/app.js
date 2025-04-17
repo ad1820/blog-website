@@ -5,10 +5,19 @@ import cors from "cors"
 const app = express()
 
 app.use(express.json({limit: "16kb"}))
+
+
+// app.use(cors({
+//     origin: "http://localhost:5173", // frontend URL
+//     credentials: true               // allow cookies
+// }));
+
+
 app.use(cors({
-    origin: "http://localhost:5173", // frontend URL
-    credentials: true               // allow cookies
+    origin: "https://blog-website-frontend-adityas-projects-5eb185b6.vercel.app", // your frontend URL on Vercel
+    credentials: true // allow cookies (JWT tokens)
 }));
+
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
 app.use(cookieParser())
 
