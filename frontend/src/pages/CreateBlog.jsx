@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
 import API from '../api/blog'
@@ -11,10 +11,11 @@ const CreateBlog = () => {
   const [body, setBody] = useState('')
   const [error, setError] = useState('')
 
-  if (!authData) {
-    navigate('/login')
-    return null
-  }
+  useEffect(() => {
+    if (!authData) {
+      navigate('/login')
+    }
+  }, [authData, navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

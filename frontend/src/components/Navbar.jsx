@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
-import '../style/Navbar.css';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { AuthContext } from '../contexts/AuthContext'
+import '../style/Navbar.css'
 
 const Navbar = () => {
-  const { authData, logout } = useContext(AuthContext);
+  const { authData, logout } = useContext(AuthContext)
 
   return (
     <nav className="navbar">
@@ -28,7 +28,7 @@ const Navbar = () => {
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

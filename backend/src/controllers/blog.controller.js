@@ -36,10 +36,20 @@ const getSingleBlog = asyncHandler(async (req, res) => {
 
         res.status(200).json(new ApiResponse(200, responseData, "Blog found successfully"))
     } catch (error) {
-        console.error(error.message);
+        console.error(error.message)
         throw new ApiError(500, "Error fetching blog")
     }
-});
+})
+
+const getUserBlogs = asyncHandler(async(req, res) => {
+    try {
+        const blogs = await Blog.find({ author: req.params.id })
+        res.status(200).json(new ApiResponse(200, blogs, "User Blogs"))
+    } catch (error) {
+        console.error(error.message)
+        throw new ApiError(500, "Error fetching user's blog")
+    }
+})
 
 
-export {getAllBlogs, getSingleBlog}
+export {getAllBlogs, getSingleBlog, getUserBlogs}

@@ -1,0 +1,176 @@
+/* BlogCard.css */
+
+.blog-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-title {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .blog-date {
+    color: #999;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-body {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    white-space: pre-line;
+  }
+  
+  .blog-feedback {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+  }
+  
+  .blog-reactions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .reaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .reaction-btn:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .reaction-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .like-btn:hover {
+    background-color: #e8f5e9;
+  }
+  
+  .dislike-btn:hover {
+    background-color: #ffebee;
+  }
+  
+  .reaction-icon {
+    font-size: 1.25rem;
+  }
+  
+  .reaction-count {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .blog-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .edit-btn, .delete-btn, .save-btn, .cancel-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .edit-btn {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .delete-btn {
+    background-color: #fff0f0;
+    color: #d32f2f;
+  }
+  
+  .delete-btn:hover {
+    background-color: #ffe0e0;
+  }
+  
+  .save-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .save-btn:hover {
+    background-color: #3d8b40;
+  }
+  
+  .cancel-btn {
+    background-color: #f0f0f0;
+    color: #666;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .edit-blog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .edit-title-input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .edit-body-textarea {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 150px;
+    font-size: 1rem;
+    font-family: inherit;
+    width: 100%;
+  }
+  
+  .edit-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .blog-feedback {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  }
